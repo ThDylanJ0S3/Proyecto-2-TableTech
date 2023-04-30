@@ -4,11 +4,15 @@
  */
 package controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
@@ -41,13 +45,13 @@ public class MenuPrincipalControllerClient implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
         lectorUsuariosClientes.leerUsuarios("C:\\Users\\tecno\\Desktop"
-              + "\\Proyecto_Datos1\\Proyecto1\\MasterClientApps\\src\\usuarios\\UsuariosClientes.xml","clientes");
+              + "\\Proyecto_Datos1\\Proyecto2\\MasterClientApps\\src\\usuarios\\UsuariosClientes.xml","clientes");
         System.out.println(lectorUsuariosClientes.getClientes());
 
     }    
 
     @FXML
-    private void iniciarSesion(ActionEvent event) {
+    private void iniciarSesion(ActionEvent event) throws IOException {
         String usuario= txtUsuario.getText();
         String contrasena= txtContra.getText();
         boolean usuarioValido=false;
@@ -60,11 +64,24 @@ public class MenuPrincipalControllerClient implements Initializable {
         }
         
         if (usuarioValido){
-            javafx.scene.control.Alert alert =new javafx.scene.control.Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Inicio de sesion correcto");
-            alert.setContentText("Inicio de sesion correcto");
-            alert.showAndWait();
-        } else {
+            
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/PrincipalClient.fxml"));
+
+            Parent root = loader.load();
+
+            PrincipalClientController controlador = loader.getController();
+
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+
+            stage.setScene(scene);
+            stage.show();
+
+            stage.setOnCloseRequest(e -> controlador.closeWindows());
+
+            Stage myStage = (Stage) this.btnIniciarSesion.getScene().getWindow();
+            myStage.close();
+            } else {
             javafx.scene.control.Alert alert = new javafx.scene.control.Alert(Alert.AlertType.ERROR);
             alert.setTitle("Nombre de usuario o contraseña incorrectos");
             alert.setContentText("Nombre de usuario o contraseña incorrectos");
