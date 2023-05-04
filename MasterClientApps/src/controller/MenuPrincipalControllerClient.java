@@ -44,8 +44,10 @@ public class MenuPrincipalControllerClient implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        lectorUsuariosClientes.leerUsuarios("C:\\Users\\tecno\\Desktop"
-              + "\\Proyecto_Datos1\\Proyecto2\\MasterClientApps\\src\\usuarios\\UsuariosClientes.xml","clientes");
+        lectorUsuariosClientes.leerUsuarios("C:\\Users\\--------------------\\Desktop\\" +
+                "Proyecto de datos 1\\Datos1" +
+                "\\MasterClientApps\\src\\usuarios" +
+                "\\UsuariosClientes.xml","clientes");
         System.out.println(lectorUsuariosClientes.getClientes());
 
     }    
