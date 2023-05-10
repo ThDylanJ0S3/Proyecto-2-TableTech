@@ -13,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import modelo.LectorUsuarios;
+import ServidorSockets.Servidor;
 
 /**
  * Metodo principal que corre el juego
@@ -60,10 +61,18 @@ public class Main extends Application {
         stageClient.setScene(sceneClient);
         stageClient.setX(stageMaster.getX() + 620); // Colocar la ventana a la derecha del maestro con un espacio de 20 píxeles
         stageClient.setY(screenBounds.getMinY() + 100); // Colocar la ventana a la misma altura que el maestro
-
+        
+        
         stageMaster.show();
         stageClient.show();
 
+
+
+        Servidor servidor = new Servidor(8080);
+        Thread hiloServidor = new Thread(servidor);
+        hiloServidor.start();
+        
+        
 
     }
 
