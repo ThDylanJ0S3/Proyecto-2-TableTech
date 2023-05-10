@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="controller.ListaAdministradoresController">
+   <children>
+      <Label layoutX="39.0" layoutY="31.0" text="Cuentas existentes:" />
+      <TableView layoutX="55.0" layoutY="55.0" prefHeight="200.0" prefWidth="505.0" />
+      <Button fx:id="btnAgregarAdmin" layoutX="128.0" layoutY="345.0" mnemonicParsing="false" onAction="#agregarAdmin" text="Agregar Administrador" />
+      <Label layoutX="62.0" layoutY="279.0" text="Username:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="58.0" layoutY="310.0" text="Contraseña:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtUsername" layoutX="140.0" layoutY="277.0" prefHeight="25.0" prefWidth="165.0" />
+      <TextField fx:id="txtContra" layoutX="140.0" layoutY="308.0" prefHeight="25.0" prefWidth="165.0" />
+      <Button fx:id="btnEliminarAdmin" layoutX="427.0" layoutY="277.0" mnemonicParsing="false" onAction="#eliminarAdmin" text="Eliminar administrador" />
+      <Button fx:id="btnModificarAdmin" layoutX="427.0" layoutY="321.0" mnemonicParsing="false" onAction="#modificarAdmin" text="Modificar administrador" />
+   </children>
+</AnchorPane>

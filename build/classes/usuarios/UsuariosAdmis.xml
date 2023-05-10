@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<usuarios>
+    <usuario>
+        <nombre>dylan</nombre>
+        <contrasena>123</contrasena>
+    </usuario>
+    <usuario>
+        <nombre>vidal</nombre>
+        <contrasena>1234</contrasena>
+    </usuario>
+    <usuario>
+        <nombre>jefferson</nombre>
+        <contrasena>12345</contrasena>
+    </usuario>
+</usuarios>
