@@ -30,4 +30,10 @@ public class Usuario {
     public String toString() {
         return "Nombre: " + this.nombre + ", Contraseña: " + this.contrasena;
     }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    
+    
 }
