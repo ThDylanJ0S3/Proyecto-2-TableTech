@@ -21,8 +21,8 @@ public class Servidor implements Runnable{
         } catch (IOException e) {
             e.printStackTrace();
         }
-        lectorUsuariosClientes.leerUsuarios("C:\\Users\\tecno\\Desktop\\Proyecto_Datos1\\Proyecto2\\MasterClientApps\\src\\usuarios\\UsuariosClientes.xml", "clientes");
-        lectorUsuariosUsuarios.leerUsuarios("C:\\Users\\tecno\\Desktop\\Proyecto_Datos1\\Proyecto2\\MasterClientApps\\src\\usuarios\\UsuariosAdmis.xml", "usuario");
+        lectorUsuariosClientes.leerUsuarios("./MasterClientApps/src/usuarios/UsuariosClientes.xml", "clientes");
+        lectorUsuariosUsuarios.leerUsuarios("./MasterClientApps/src/usuarios/UsuariosAdmis.xml", "usuario");
         
         System.out.println(lectorUsuariosClientes.getClientes());
         System.out.println(lectorUsuariosUsuarios.getClientes());

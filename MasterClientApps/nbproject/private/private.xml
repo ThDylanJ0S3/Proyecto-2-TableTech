@@ -3,24 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/tecno/Desktop/Proyecto_Datos1/Proyecto2/MasterClientApps/src/controller/HistorialPedidosController.java</file>
-            <file>file:/C:/Users/tecno/Desktop/Proyecto_Datos1/Proyecto2/MasterClientApps/src/controller/MenuPrincipalControllerClient.java</file>
-            <file>file:/C:/Users/tecno/Desktop/Proyecto_Datos1/Proyecto2/MasterClientApps/src/ServidorSockets/ConexionServidor.java</file>
-            <file>file:/C:/Users/tecno/Desktop/Proyecto_Datos1/Proyecto2/MasterClientApps/src/controller/Main.java</file>
-            <file>file:/C:/Users/tecno/Desktop/Proyecto_Datos1/Proyecto2/MasterClientApps/src/GUI/historialPedidos.fxml</file>
-            <file>file:/C:/Users/tecno/Desktop/Proyecto_Datos1/Proyecto2/MasterClientApps/src/controller/PrincipalMasterController.java</file>
-            <file>file:/C:/Users/tecno/Desktop/Proyecto_Datos1/Proyecto2/MasterClientApps/src/controller/MenuPrincipalControllerMaster.java</file>
-            <file>file:/C:/Users/tecno/Desktop/Proyecto_Datos1/Proyecto2/MasterClientApps/src/controller/MenuPedidoController.java</file>
-            <file>file:/C:/Users/tecno/Desktop/Proyecto_Datos1/Proyecto2/MasterClientApps/src/controller/PrincipalClientController.java</file>
-            <file>file:/C:/Users/tecno/Desktop/Proyecto_Datos1/Proyecto2/MasterClientApps/src/GUI/ListaAdministradores.fxml</file>
-            <file>file:/C:/Users/tecno/Desktop/Proyecto_Datos1/Proyecto2/MasterClientApps/src/ServidorSockets/Servidor.java</file>
-            <file>file:/C:/Users/tecno/Desktop/Proyecto_Datos1/Proyecto2/MasterClientApps/src/GUI/PrincipalMaster.fxml</file>
-            <file>file:/C:/Users/tecno/Desktop/Proyecto_Datos1/Proyecto2/MasterClientApps/src/controller/ListaAdministradoresController.java</file>
-            <file>file:/C:/Users/tecno/Desktop/Proyecto_Datos1/Proyecto2/MasterClientApps/src/GUI/PrincipalClient.fxml</file>
-            <file>file:/C:/Users/tecno/Desktop/Proyecto_Datos1/Proyecto2/MasterClientApps/src/GUI/MenuPlatillos.fxml</file>
-            <file>file:/C:/Users/tecno/Desktop/Proyecto_Datos1/Proyecto2/MasterClientApps/src/modelo/Usuario.java</file>
-            <file>file:/C:/Users/tecno/Desktop/Proyecto_Datos1/Proyecto2/MasterClientApps/src/GUI/menuPedido.fxml</file>
-            <file>file:/C:/Users/tecno/Desktop/Proyecto_Datos1/Proyecto2/MasterClientApps/src/controller/MenuPlatillosController.java</file>
+            <file>file:/C:/Users/--------------------/Desktop/Proyecto%20de%20datos%201/Datos1/MasterClientApps/src/controller/Application.java</file>
+            <file>file:/C:/Users/--------------------/Desktop/Proyecto%20de%20datos%201/Datos1/MasterClientApps/src/controller/Initializable.java</file>
+            <file>file:/C:/Users/--------------------/Desktop/Proyecto%20de%20datos%201/Datos1/MasterClientApps/src/ServidorSockets/ConexionServidor.java</file>
+            <file>file:/C:/Users/--------------------/Desktop/Proyecto%20de%20datos%201/Datos1/MasterClientApps/src/controller/Main.java</file>
+            <file>file:/C:/Users/--------------------/Desktop/Proyecto%20de%20datos%201/Datos1/MasterClientApps/src/modelo/LectorUsuarios.java</file>
+            <file>file:/C:/Users/--------------------/Desktop/Proyecto%20de%20datos%201/Datos1/MasterClientApps/src/controller/HistorialPedidosController.java</file>
         </group>
     </open-files>
 </project-private>
