@@ -39,8 +39,8 @@ public class Servidor implements Runnable{
         } catch (IOException e) {
             e.printStackTrace();
         }
-        lectorUsuariosClientes.leerUsuarios("C:\\Users\\tecno\\Desktop\\Proyecto_Datos1\\Proyecto2\\MasterClientApps\\src\\usuarios\\UsuariosClientes.xml", "clientes");
-        lectorUsuariosUsuarios.leerUsuarios("C:\\Users\\tecno\\Desktop\\Proyecto_Datos1\\Proyecto2\\MasterClientApps\\src\\usuarios\\UsuariosAdmis.xml", "usuario");
+        lectorUsuariosClientes.leerUsuarios("C:\\Users\\dell0\\OneDrive\\Documentos\\NetBeansProjects\\Proyecto2\\Proyecto-2-TableTech\\MasterClientApps\\src\\usuarios\\UsuariosClientes.xml", "clientes");
+        lectorUsuariosUsuarios.leerUsuarios("C:\\Users\\dell0\\OneDrive\\Documentos\\NetBeansProjects\\Proyecto2\\Proyecto-2-TableTech\\MasterClientApps\\src\\usuarios\\UsuariosAdmis.xml", "usuario");
         arbolUsuarios = new ArbolBinarioBusqueda();
         arbolClientes = new ArbolBinarioBusqueda();
 
