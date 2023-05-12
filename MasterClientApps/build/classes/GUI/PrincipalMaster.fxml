@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="310.0" prefWidth="526.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="controller.PrincipalMasterController">
+   <children>
+      <Label layoutX="14.0" layoutY="14.0" text="¡Bienvenido!">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnListaAdmi" layoutX="47.0" layoutY="259.0" mnemonicParsing="false" onAction="#mostrarMenuAdmi" text="Lista de administradores">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnPlatillos" layoutX="351.0" layoutY="259.0" mnemonicParsing="false" onAction="#mostrarMenuPlatillos" text="Platillos del menú">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <TableView layoutX="47.0" layoutY="48.0" prefHeight="181.0" prefWidth="432.0">
+        <columns>
+          <TableColumn fx:id="ColumPedido" prefWidth="173.0" text="Pedido" />
+          <TableColumn fx:id="ColumTiempo" prefWidth="123.0" text="Tiempo " />
+            <TableColumn fx:id="ColumEstado" prefWidth="135.0" text="Estado" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

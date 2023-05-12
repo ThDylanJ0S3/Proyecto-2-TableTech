@@ -21,7 +21,6 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import modelo.LectorUsuarios;
 import modelo.Usuario;
-import ServidorSockets.ConexionServidor;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.ObjectInputStream;

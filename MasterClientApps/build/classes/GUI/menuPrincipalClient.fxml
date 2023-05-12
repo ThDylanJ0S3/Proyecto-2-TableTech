@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MenuPrincipalControllerClient">
+   <children>
+      <Label layoutX="31.0" layoutY="25.0" style="-fx-font-family: New Time Roman;" text="ClientApp" textFill="GOLD">
+         <font>
+            <Font name="Century Schoolbook" size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="88.0" layoutY="72.0" text="La aplicacion para los usuarios del comedor institucional" textFill="GOLD">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="60.0" layoutY="183.0" text="Usuario:" textFill="GOLD">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="46.0" layoutY="242.0" text="Contraseña:" textFill="GOLD">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtUsuario" layoutX="155.0" layoutY="180.0" prefHeight="34.0" prefWidth="244.0" style="-fx-background-color: black;-fx-border-color: gold;     -fx-border-width: 1px;-fx-text-fill: gold;" />
+      <PasswordField fx:id="txtContra" layoutX="155.0" layoutY="239.0" prefHeight="34.0" prefWidth="244.0" style="-fx-background-color: black;-fx-border-color: gold;     -fx-border-width: 1px;-fx-text-fill: gold;" />
+      <HBox layoutX="133.0" layoutY="314.0" prefHeight="35.0" prefWidth="334.0" spacing="100.0">
+         <children>
+            <Button fx:id="btnIniciarSesion" mnemonicParsing="false" onAction="#iniciarSesion" prefHeight="50.0" prefWidth="117.0" style="-fx-background-color: silver;" text="Iniciar Sesión" textFill="BLACk">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#cerrarApp" prefHeight="52.0" prefWidth="121.0" style="-fx-background-color: silver;" text="Cancelar" textFill="BLACK">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </HBox>
+      <Button fx:id="btnServidor" layoutX="522.0" layoutY="361.0" mnemonicParsing="false" onAction="#conectarServidor" text="Conectar" />
+   </children>
+
+</AnchorPane>
