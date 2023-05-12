@@ -70,6 +70,13 @@ public class ListaAdministradoresController implements Initializable {
                 } catch (IOException ex) {
                     System.out.println("Error al conectar al servidor");
                 }
+                
+                admin1.setText("Dylan");
+                admi2.setText("Vidal");
+                admi3.setText("Jefferson");
+                admin4.setText(" ");
+                admin5.setText(" ");
+                System.out.println("");
     }    
 
     @FXML
@@ -85,7 +92,6 @@ public class ListaAdministradoresController implements Initializable {
         
         in.close();
         out.close();
-        Socket.close();
     }
 
     @FXML

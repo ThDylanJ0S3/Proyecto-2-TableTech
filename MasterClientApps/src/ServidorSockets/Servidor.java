@@ -1,5 +1,7 @@
 package ServidorSockets;
 
+import EstructurasDatos.ArbolBinarioBusqueda;
+import EstructurasDatos.NodoBinarioBusqueda;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -20,12 +22,16 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
 
+
 public class Servidor implements Runnable{
+    
+    private ArbolBinarioBusqueda arbolUsuarios;
+    private ArbolBinarioBusqueda arbolClientes;
     private ServerSocket servidorSocket;
     private Socket socket;
-    
-    private LectorUsuarios lectorUsuariosClientes=new LectorUsuarios();
-    private LectorUsuarios lectorUsuariosUsuarios=new LectorUsuarios();
+
+    private LectorUsuarios lectorUsuariosClientes = new LectorUsuarios();
+    private LectorUsuarios lectorUsuariosUsuarios = new LectorUsuarios();
 
     public Servidor(int puerto) {
         try {
@@ -35,10 +41,13 @@ public class Servidor implements Runnable{
         }
         lectorUsuariosClientes.leerUsuarios("C:\\Users\\tecno\\Desktop\\Proyecto_Datos1\\Proyecto2\\MasterClientApps\\src\\usuarios\\UsuariosClientes.xml", "clientes");
         lectorUsuariosUsuarios.leerUsuarios("C:\\Users\\tecno\\Desktop\\Proyecto_Datos1\\Proyecto2\\MasterClientApps\\src\\usuarios\\UsuariosAdmis.xml", "usuario");
-        
-        System.out.println(lectorUsuariosClientes.getClientes());
-        System.out.println(lectorUsuariosUsuarios.getClientes());
-        
+        arbolUsuarios = new ArbolBinarioBusqueda();
+        arbolClientes = new ArbolBinarioBusqueda();
+
+        System.out.println(lectorUsuariosClientes.getClientes() + "lector clientes");
+        System.out.println(lectorUsuariosUsuarios.getUsuarios() + "lector admis");
+        cargarAdmisEnArbol();
+        cargarClientesEnArbol();
     }
 
     public void iniciarServidor() {
@@ -131,22 +140,13 @@ public class Servidor implements Runnable{
         boolean usuarioValido = false;
 
         if (tipo.equals("usuario")) {
-            for (Usuario u : lectorUsuariosUsuarios.getUsuarios()) {
-                if (u.getNombre().equals(usuario) && u.getContrasena().equals(contrasena)) {
-                    usuarioValido = true;
-                    break;
-                }
-            }
+            System.out.println("se busca en el arbol binario la validacion admis");
+            return arbolUsuarios.buscar(usuario, contrasena);
         } else {
-            for (Usuario u : lectorUsuariosClientes.getClientes()) {
-                if (u.getNombre().equals(usuario) && u.getContrasena().equals(contrasena)) {
-                    usuarioValido = true;
-                    break;
-                }
-            }
+            System.out.println("se busca en el arbol binario la validacion clientes");
+            return arbolClientes.buscar(usuario, contrasena);
+        
         }
-
-        return usuarioValido;
 
     }
 
@@ -251,4 +251,18 @@ public class Servidor implements Runnable{
 
     }
 
+    
+    private void cargarAdmisEnArbol() {
+        // Carga los usuarios en el árbol binario de búsqueda
+        for (Usuario u : lectorUsuariosUsuarios.getUsuarios()) {
+            arbolUsuarios.insertar(u.getNombre(), u.getContrasena());
+        }
+    }
+    private void cargarClientesEnArbol() {
+        // Carga los usuarios en el árbol binario de búsqueda
+        for (Usuario u : lectorUsuariosClientes.getClientes()) {
+            arbolClientes.insertar(u.getNombre(), u.getContrasena());
+        }
+    }
+    
 }
