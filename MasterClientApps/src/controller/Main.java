@@ -22,16 +22,17 @@ import ServidorSockets.Servidor;
  */
 public class Main extends Application {
 
-    /**
-     * se declara el contructor del metodo main para poder hacer ejecutable el
-     * proyecto
-     *
-     * @param args se envian los argumentos y comandos de linea
-     */
+
+
+        /**
+         * se declara el contructor del metodo main para poder hacer ejecutable el
+         * proyecto
+         *
+         * @param args se envian los argumentos y comandos de linea
+         */
     public static void main(String[] args) {
         launch(args);
     }
-
     @Override
     /**
      * Método principal que genera el hilo necesario para poder ejecutar la GUI
@@ -64,12 +65,16 @@ public class Main extends Application {
         
         stageMaster.show();
         stageClient.show();
-        
+
+
+
         Servidor servidor = new Servidor(8080);
         Thread hiloServidor = new Thread(servidor);
         hiloServidor.start();
         
         
+
     }
+
 
 }

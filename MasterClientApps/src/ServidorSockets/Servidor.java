@@ -48,6 +48,11 @@ public class Servidor implements Runnable{
         System.out.println(lectorUsuariosUsuarios.getUsuarios() + "lector admis");
         cargarAdmisEnArbol();
         cargarClientesEnArbol();
+        /*lectorUsuariosClientes.leerUsuarios("./MasterClientApps/src/usuarios/UsuariosClientes.xml", "clientes");
+        lectorUsuariosUsuarios.leerUsuarios("./MasterClientApps/src/usuarios/UsuariosAdmis.xml", "usuario");
+        
+        System.out.println(lectorUsuariosClientes.getClientes());
+        System.out.println(lectorUsuariosUsuarios.getClientes());*/
     }
 
     public void iniciarServidor() {
