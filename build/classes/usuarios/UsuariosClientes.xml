@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<clientes>
+    <cliente>
+        <nombre>cliente1</nombre>
+        <contrasena>123</contrasena>
+    </cliente>
+    <cliente>
+        <nombre>cliente2</nombre>
+        <contrasena>1234</contrasena>
+    </cliente>
+    <cliente>
+        <nombre>cliente3</nombre>
+        <contrasena>12345</contrasena>
+    </cliente>
+</clientes>
