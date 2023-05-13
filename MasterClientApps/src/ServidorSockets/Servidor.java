@@ -2,6 +2,8 @@ package ServidorSockets;
 
 import EstructurasDatos.ArbolBinarioBusqueda;
 import EstructurasDatos.NodoBinarioBusqueda;
+
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -23,6 +25,7 @@ import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
 
 
+
 public class Servidor implements Runnable{
     
     private ArbolBinarioBusqueda arbolUsuarios;
@@ -39,8 +42,8 @@ public class Servidor implements Runnable{
         } catch (IOException e) {
             e.printStackTrace();
         }
-        lectorUsuariosClientes.leerUsuarios("C:\\Users\\dell0\\OneDrive\\Documentos\\NetBeansProjects\\Proyecto2\\Proyecto-2-TableTech\\MasterClientApps\\src\\usuarios\\UsuariosClientes.xml", "clientes");
-        lectorUsuariosUsuarios.leerUsuarios("C:\\Users\\dell0\\OneDrive\\Documentos\\NetBeansProjects\\Proyecto2\\Proyecto-2-TableTech\\MasterClientApps\\src\\usuarios\\UsuariosAdmis.xml", "usuario");
+        lectorUsuariosClientes.leerUsuarios("./MasterClientApps/src/usuarios/UsuariosClientes.xml", "clientes");
+        lectorUsuariosUsuarios.leerUsuarios("./MasterClientApps/src/usuarios/UsuariosAdmis.xml", "usuario");
         arbolUsuarios = new ArbolBinarioBusqueda();
         arbolClientes = new ArbolBinarioBusqueda();
 
@@ -269,5 +272,7 @@ public class Servidor implements Runnable{
             arbolClientes.insertar(u.getNombre(), u.getContrasena());
         }
     }
-    
+
+
+
 }
