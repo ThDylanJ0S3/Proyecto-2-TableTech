@@ -2,6 +2,8 @@ package ServidorSockets;
 
 import EstructurasDatos.ArbolBinarioBusqueda;
 import EstructurasDatos.NodoBinarioBusqueda;
+
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -23,6 +25,7 @@ import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
 
 
+
 public class Servidor implements Runnable{
     
     private ArbolBinarioBusqueda arbolUsuarios;
@@ -39,8 +42,8 @@ public class Servidor implements Runnable{
         } catch (IOException e) {
             e.printStackTrace();
         }
-        lectorUsuariosClientes.leerUsuarios("C:\\Users\\dell0\\OneDrive\\Documentos\\NetBeansProjects\\Proyecto2\\Proyecto-2-TableTech\\MasterClientApps\\src\\usuarios\\UsuariosClientes.xml", "clientes");
-        lectorUsuariosUsuarios.leerUsuarios("C:\\Users\\dell0\\OneDrive\\Documentos\\NetBeansProjects\\Proyecto2\\Proyecto-2-TableTech\\MasterClientApps\\src\\usuarios\\UsuariosAdmis.xml", "usuario");
+        lectorUsuariosClientes.leerUsuarios("./MasterClientApps/src/usuarios/UsuariosClientes.xml", "clientes");
+        lectorUsuariosUsuarios.leerUsuarios("./MasterClientApps/src/usuarios/UsuariosAdmis.xml", "usuario");
         arbolUsuarios = new ArbolBinarioBusqueda();
         arbolClientes = new ArbolBinarioBusqueda();
 
@@ -48,6 +51,11 @@ public class Servidor implements Runnable{
         System.out.println(lectorUsuariosUsuarios.getUsuarios() + "lector admis");
         cargarAdmisEnArbol();
         cargarClientesEnArbol();
+        /*lectorUsuariosClientes.leerUsuarios("./MasterClientApps/src/usuarios/UsuariosClientes.xml", "clientes");
+        lectorUsuariosUsuarios.leerUsuarios("./MasterClientApps/src/usuarios/UsuariosAdmis.xml", "usuario");
+        
+        System.out.println(lectorUsuariosClientes.getClientes());
+        System.out.println(lectorUsuariosUsuarios.getClientes());*/
     }
 
     public void iniciarServidor() {
@@ -161,7 +169,7 @@ public class Servidor implements Runnable{
                 DocumentBuilder builder = factory.newDocumentBuilder();
 
                 // Parsear el archivo XML existente para obtener el objeto Document
-                Document documento = builder.parse("C:\\Users\\tecno\\Desktop\\Proyecto_Datos1\\Proyecto2\\MasterClientApps\\src\\usuarios\\UsuariosAdmis.xml");
+                Document documento = builder.parse("./MasterClientApps/src/usuarios/UsuariosAdmis.xml");
 
                 // Crear el nuevo elemento 'usuario'
                 Element elementoUsuario = documento.createElement("usuario");
@@ -190,7 +198,7 @@ public class Servidor implements Runnable{
                 DOMSource source = new DOMSource(documento);
 
                 // Especificar la ubicación y nombre del archivo XML de salida
-                StreamResult result = new StreamResult("C:\\Users\\tecno\\Desktop\\Proyecto_Datos1\\Proyecto2\\MasterClientApps\\src\\usuarios\\UsuariosAdmis.xml");
+                StreamResult result = new StreamResult("./MasterClientApps/src/usuarios/UsuariosAdmis.xml");
 
                 // Realizar la transformación y escribir el archivo XML modificado
                 transformer.transform(source, result);
@@ -208,7 +216,7 @@ public class Servidor implements Runnable{
                 DocumentBuilder builder = factory.newDocumentBuilder();
 
                 // Parsear el archivo XML existente para obtener el objeto Document
-                Document documento = builder.parse("C:\\Users\\tecno\\Desktop\\Proyecto_Datos1\\Proyecto2\\MasterClientApps\\src\\usuarios\\UsuariosClientes.xml");
+                Document documento = builder.parse("./MasterClientApps/src/usuarios/UsuariosClientes.xml");
 
                 // Crear el nuevo elemento 'usuario'
                 Element elementoUsuario = documento.createElement("cliente");
@@ -237,7 +245,7 @@ public class Servidor implements Runnable{
                 DOMSource source = new DOMSource(documento);
 
                 // Especificar la ubicación y nombre del archivo XML de salida
-                StreamResult result = new StreamResult("C:\\Users\\tecno\\Desktop\\Proyecto_Datos1\\Proyecto2\\MasterClientApps\\src\\usuarios\\UsuariosClientes.xml");
+                StreamResult result = new StreamResult("./MasterClientApps/src/usuarios/UsuariosClientes.xml");
 
                 // Realizar la transformación y escribir el archivo XML modificado
                 transformer.transform(source, result);
@@ -264,5 +272,7 @@ public class Servidor implements Runnable{
             arbolClientes.insertar(u.getNombre(), u.getContrasena());
         }
     }
-    
+
+
+
 }
