@@ -4,18 +4,29 @@
  */
 package controller;
 
+import ServidorSockets.ClienteSockets;
+import ServidorSockets.Servidor;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.beans.Observable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import modelo.Usuario;
 
 /**
  * FXML Controller class
@@ -34,16 +45,6 @@ public class ListaAdministradoresController implements Initializable {
     private Button btnEliminarAdmin;
     @FXML
     private Button btnModificarAdmin;
-    @FXML
-    private Label admin1;
-    @FXML
-    private Label admi2;
-    @FXML
-    private Label admi3;
-    @FXML
-    private Label admin4;
-    @FXML
-    private Label admin5;
     
     private Socket Socket;
     
@@ -54,52 +55,178 @@ public class ListaAdministradoresController implements Initializable {
     private TextField txtNameModificar;
     @FXML
     private TextField txtContraModificar;
-
+    @FXML
+    private TableView<Usuario> tablaAdmis;
+    
+    ObservableList<Usuario> admis;
+    
+    @FXML
+    private TableColumn<Usuario, String> columName;
+    @FXML
+    private TableColumn<Usuario, String> columContra;
+    
+    private ClienteSockets cliente;
     /**
      * Initializes the controller class.
      */
     
     public void initialize(URL url, ResourceBundle rb) {
-        
-                try {
-                    Socket = new Socket("localhost", 8080);
-                    System.out.println("Conectado al servidor");
-                    out = new ObjectOutputStream(Socket.getOutputStream());
-                    out.flush();
-                    in = new ObjectInputStream(Socket.getInputStream());
-                } catch (IOException ex) {
-                    System.out.println("Error al conectar al servidor");
-                }
-                
-                admin1.setText("Dylan");
-                admi2.setText("Vidal");
-                admi3.setText("Jefferson");
-                admin4.setText(" ");
-                admin5.setText(" ");
-                System.out.println("");
-    }    
+        try {
+            Socket = new Socket("localhost", 8080);
+            out = new ObjectOutputStream(Socket.getOutputStream());
+            out.flush();
+            in = new ObjectInputStream(Socket.getInputStream());
+
+            out.writeObject(new String[]{"ListaAdmis"});
+            out.flush();
+
+            // Recibir la respuesta del servidor
+            List<Usuario> resultado = (List<Usuario>) in.readObject();
+            setUsuarios(resultado);
+            System.out.println(resultado + "esto es lo que se recibe");
+            
+            in.close();
+            out.close();
+        } catch (IOException ex) {
+            System.out.println("Error al conectar al servidor");
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ListaAdministradoresController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
 
     @FXML
-    private void agregarAdmin(ActionEvent event) throws IOException {
-        String nombre=txtUsername.getText();
-        String contrasena=txtContra.getText();
+    private void agregarAdmin(ActionEvent event) throws IOException, ClassNotFoundException {
+        String nombre = txtUsername.getText();
+        String contrasena = txtContra.getText();
         String accion = "agregar";
-        out.writeObject(new String[]{nombre, contrasena,accion});
-        out.flush();
+        try {
+            Socket = new Socket("localhost", 8080);
+            out = new ObjectOutputStream(Socket.getOutputStream());
+            out.flush();
+            in = new ObjectInputStream(Socket.getInputStream());
 
-        // Recibir la respuesta del servidor
-        boolean resultado = in.readBoolean();
+            out.writeObject(new String[]{nombre, contrasena, accion});
+            out.flush();
+
+            // Recibir la respuesta del servidor
+            boolean resultado = in.readBoolean();
+
+            
+            in.close();
+            out.close();
+            
+            Socket = new Socket("localhost", 8080);
+            out = new ObjectOutputStream(Socket.getOutputStream());
+            out.flush();
+            in = new ObjectInputStream(Socket.getInputStream());
+
+            out.writeObject(new String[]{"ListaAdmis"});
+            out.flush();
+
+            // Recibir la respuesta del servidor
+            List<Usuario> resultado1 = (List<Usuario>) in.readObject();
+            setUsuarios(resultado1);
+            System.out.println(resultado + "esto es lo que se recibe");
+            
+            in.close();
+            out.close();
+        } catch (IOException ex) {
+            System.out.println("Error al conectar al servidor");
+        }
+    }
+
+    @FXML
+    private void eliminarAdmin(ActionEvent event) throws ClassNotFoundException {
+        String oldName=txtUsername.getText();
+        String oldContra=txtContra.getText();
+        String newName=" ";
+        String newContra=" ";
+        String tipo="eliminar";
+        try {
+            Socket = new Socket("localhost", 8080);
+            out = new ObjectOutputStream(Socket.getOutputStream());
+            out.flush();
+            in = new ObjectInputStream(Socket.getInputStream());
         
-        in.close();
-        out.close();
+            out.writeObject(new String[]{oldName, oldContra, newName, newContra, tipo});
+            out.flush();
+
+            // Recibir la respuesta del servidor
+            boolean resultado = in.readBoolean();
+
+            
+            in.close();
+            out.close();
+            Socket = new Socket("localhost", 8080);
+            out = new ObjectOutputStream(Socket.getOutputStream());
+            out.flush();
+            in = new ObjectInputStream(Socket.getInputStream());
+
+            out.writeObject(new String[]{"ListaAdmis"});
+            out.flush();
+
+            // Recibir la respuesta del servidor
+            List<Usuario> resultado1 = (List<Usuario>) in.readObject();
+            setUsuarios(resultado1);
+            System.out.println(resultado + "esto es lo que se recibe");
+            
+            in.close();
+            out.close();
+        } catch (IOException ex) {
+            System.out.println("Error al conectar al servidor");
+        }
     }
 
     @FXML
-    private void eliminarAdmin(ActionEvent event) {
+    private void modificarAdmin(ActionEvent event) throws ClassNotFoundException {
+        String oldName=txtUsername.getText();
+        String oldContra=txtContra.getText();
+        String newName=txtNameModificar.getText();
+        String newContra=txtContraModificar.getText();
+        String tipo="modificar";
+        try {
+            Socket = new Socket("localhost", 8080);
+            out = new ObjectOutputStream(Socket.getOutputStream());
+            out.flush();
+            in = new ObjectInputStream(Socket.getInputStream());
+
+            out.writeObject(new String[]{oldName, oldContra, newName, newContra, tipo});
+            out.flush();
+
+            // Recibir la respuesta del servidor
+            boolean resultado = in.readBoolean();
+
+            in.close();
+            out.close();
+            
+            Socket = new Socket("localhost", 8080);
+            out = new ObjectOutputStream(Socket.getOutputStream());
+            out.flush();
+            in = new ObjectInputStream(Socket.getInputStream());
+
+            out.writeObject(new String[]{"ListaAdmis"});
+            out.flush();
+
+            // Recibir la respuesta del servidor
+            List<Usuario> resultado1 = (List<Usuario>) in.readObject();
+            setUsuarios(resultado1);
+            System.out.println(resultado + "esto es lo que se recibe");
+            
+            in.close();
+            out.close();
+        } catch (IOException ex) {
+            System.out.println("Error al conectar al servidor");
+        }
+
     }
 
-    @FXML
-    private void modificarAdmin(ActionEvent event) {
+    public void setUsuarios(List<Usuario> usuarios) {
+        admis = FXCollections.observableArrayList(usuarios);
+        columName.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        columContra.setCellValueFactory(new PropertyValueFactory<>("contrasena"));
+
+        tablaAdmis.setItems(admis);
     }
-    
+
 }

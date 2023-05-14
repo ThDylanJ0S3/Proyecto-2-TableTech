@@ -12,6 +12,7 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.concurrent.CountDownLatch;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -33,6 +34,7 @@ import modelo.Usuario;
  * @author Personal
  */
 public class MenuPrincipalControllerMaster implements Initializable {
+    
 
     @FXML
     private TextField txtUsuario;
