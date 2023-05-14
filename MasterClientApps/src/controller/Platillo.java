@@ -1,8 +1,10 @@
-package controller;
+/**package controller;
+import com.google.gson.Gson;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-/** MANEJO DE JSON DE LOS PLATILLOS DEL SERVIDOR CODIGO INICIAL (NO FUNCIONAL)*/
+ MANEJO DE JSON DE LOS PLATILLOS DEL SERVIDOR CODIGO INICIAL (NO FUNCIONAL)
 public class Platillo {
     private String nombre;
     private String descripcion;
@@ -14,8 +16,8 @@ public class Platillo {
     List<Platillo> platillos = new ArrayList<>();
 
     // Creación de un objeto Platillo y adición a la lista de platillos
-    Platillo nuevoPlatillo = new Platillo(nombre, descripcion, precio);
-    platillos.add(nuevoPlatillo);
+    Platillo nuevoPlatillo = new Platillo();
+    platillos.add();
 
     // Método para guardar una lista de objetos Platillo en un archivo
     private void guardarPlatillos(List<Platillo> platillos, String nombreArchivo) {
@@ -44,3 +46,4 @@ public class Platillo {
         return platillos; // Retorno de la lista de objetos Platillo leída del archivo
     }
 }
+ */

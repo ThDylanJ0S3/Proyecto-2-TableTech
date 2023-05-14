@@ -169,7 +169,7 @@ public class Servidor implements Runnable{
                 DocumentBuilder builder = factory.newDocumentBuilder();
 
                 // Parsear el archivo XML existente para obtener el objeto Document
-                Document documento = builder.parse("C:\\Users\\tecno\\Desktop\\Proyecto_Datos1\\Proyecto2\\MasterClientApps\\src\\usuarios\\UsuariosAdmis.xml");
+                Document documento = builder.parse("./MasterClientApps/src/usuarios/UsuariosAdmis.xml");
 
                 // Crear el nuevo elemento 'usuario'
                 Element elementoUsuario = documento.createElement("usuario");
@@ -198,7 +198,7 @@ public class Servidor implements Runnable{
                 DOMSource source = new DOMSource(documento);
 
                 // Especificar la ubicación y nombre del archivo XML de salida
-                StreamResult result = new StreamResult("C:\\Users\\tecno\\Desktop\\Proyecto_Datos1\\Proyecto2\\MasterClientApps\\src\\usuarios\\UsuariosAdmis.xml");
+                StreamResult result = new StreamResult("./MasterClientApps/src/usuarios/UsuariosAdmis.xml");
 
                 // Realizar la transformación y escribir el archivo XML modificado
                 transformer.transform(source, result);
@@ -216,7 +216,7 @@ public class Servidor implements Runnable{
                 DocumentBuilder builder = factory.newDocumentBuilder();
 
                 // Parsear el archivo XML existente para obtener el objeto Document
-                Document documento = builder.parse("C:\\Users\\tecno\\Desktop\\Proyecto_Datos1\\Proyecto2\\MasterClientApps\\src\\usuarios\\UsuariosClientes.xml");
+                Document documento = builder.parse("./MasterClientApps/src/usuarios/UsuariosClientes.xml");
 
                 // Crear el nuevo elemento 'usuario'
                 Element elementoUsuario = documento.createElement("cliente");
@@ -245,7 +245,7 @@ public class Servidor implements Runnable{
                 DOMSource source = new DOMSource(documento);
 
                 // Especificar la ubicación y nombre del archivo XML de salida
-                StreamResult result = new StreamResult("C:\\Users\\tecno\\Desktop\\Proyecto_Datos1\\Proyecto2\\MasterClientApps\\src\\usuarios\\UsuariosClientes.xml");
+                StreamResult result = new StreamResult("./MasterClientApps/src/usuarios/UsuariosClientes.xml");
 
                 // Realizar la transformación y escribir el archivo XML modificado
                 transformer.transform(source, result);
