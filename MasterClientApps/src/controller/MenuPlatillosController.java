@@ -65,13 +65,12 @@ public class MenuPlatillosController implements Initializable {
         // Se asigna la lista observable de platillos a la tabla
         tablaPlatillos.setItems(platos);
     }
-
     @FXML
     private void agregarPlatillo() {
-        // Se obtienen los valores de los campos de texto correspondientes al nombre del platillo, cantidad de calorías, tiempo de preparación y precio
+        // Se obtienen los valores de los campos de texto correspondientes al nombre del platillo,
+        // cantidad de calorías, tiempo de preparación y precio
         String nombrePlatillo = txtNombrePlatillo.getText();
         int cantidadCalorias, tiempoPreparacion, precio;
-
         try {
             cantidadCalorias = Integer.parseInt(txtCantidadCalorias.getText());
             tiempoPreparacion = Integer.parseInt(txtTiempoPreparacion.getText());
@@ -87,8 +86,11 @@ public class MenuPlatillosController implements Initializable {
             return;
         }
 
-        // Si todos los campos de texto tienen valores, se crea un objeto Platillos con esos valores y se agrega
+        Platillos platillo = new Platillos(nombrePlatillo, cantidadCalorias, tiempoPreparacion, precio);
+        platos.add(platillo);
     }
+
+
 
     @FXML
     private void modificarPlatillo(ActionEvent event) {

@@ -11,7 +11,7 @@ public class Platillos {
     private int precio;
     private int tiempoPreparacion;
 
-    public Platillos() {
+    public Platillos(String nombrePlatillo, int cantidadCalorias, int tiempoPreparacion, int precio) {
     }
 
     public String getNombrePlatillo() {
