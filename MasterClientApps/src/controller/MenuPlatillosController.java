@@ -1,4 +1,6 @@
 package controller;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -9,7 +11,15 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import modelo.AlertW;
 import modelo.Platillos;
 
+import java.io.*;
+import java.lang.reflect.Type;
+import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -65,6 +75,7 @@ public class MenuPlatillosController implements Initializable {
         // Se asigna la lista observable de platillos a la tabla
         tablaPlatillos.setItems(platos);
     }
+
     @FXML
     private void agregarPlatillo() {
         // Se obtienen los valores de los campos de texto correspondientes al nombre del platillo,
@@ -88,6 +99,50 @@ public class MenuPlatillosController implements Initializable {
 
         Platillos platillo = new Platillos(nombrePlatillo, cantidadCalorias, tiempoPreparacion, precio);
         platos.add(platillo);
+
+        // Se llama al método para guardar la lista de platillos en el archivo JSON y almacenarlo en el servidor
+        guardarPlatillosEnJson(platos);
+    }
+
+    // Ruta del archivo JSON en el servidor
+
+    private static final String PLATILLOS_FILE = "./MasterClientApps/src/ServidorSockets/Servidor.java";
+
+    // Método para guardar la lista de platillos en un archivo JSON local
+    private void guardarPlatillosEnJson(List<Platillos> platillos) {
+        Gson gson = new Gson();
+        String json = gson.toJson(platillos);
+
+        try {
+            // Crear un objeto Path con la ruta del archivo local
+            Path filePath = Paths.get("./MasterClientApps/src/   Json");
+
+            // Escribir los datos en el archivo local
+            Files.writeString(filePath, json);
+
+            // Imprimir confirmación
+            System.out.println("Datos guardados en archivo local.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    // Método para cargar la lista de platillos desde un archivo JSON local
+    private List<Platillos> cargarPlatillosDesdeJson() {
+        List<Platillos> platillos = new ArrayList<>();
+        // Se lee el archivo JSON local
+        try {
+            Path filePath = Paths.get("ruta/del/archivo.json");
+            if (Files.exists(filePath)) {
+                String json = Files.readString(filePath); 
+                Gson gson = new Gson();
+                Type type = new TypeToken<List<Platillos>>(){}.getType();
+                platillos = gson.fromJson(json, type);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return platillos;
     }
 
 
