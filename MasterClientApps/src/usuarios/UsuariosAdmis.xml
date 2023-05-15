@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <usuarios>
-                                                                                
+                                                                                        
+    
+    
     
     
     
     <usuario>
-                                                                                                                                                                                                                                                       
+                                                                                                                                                                                                                                                                       
+        
+        
         
         
         
@@ -13,18 +17,24 @@
         
         
         <nombre>dylan</nombre>
-                                                                                                                                                                                                                                                     
+                                                                                                                                                                                                                                                                     
+        
+        
         
         
         
         <contrasena>123</contrasena>
-                                                                                          
+                                                                                                          
+    
+    
     
     
     
     
     </usuario>
-                                                                                                                                                                    
+                                                                                                                                                                            
+    
+    
     
     
     
@@ -32,36 +42,53 @@
     
     
     <usuario>
-          
+                          
+        
+        
         
         <nombre>jefferson</nombre>
-                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                        
+        
+        
         
         
         
         <contrasena>12345</contrasena>
-                                                                                                                                                                                                                                                    
+                                                                                                                                                                                                                                                                    
+    
+    
     
     
     
     </usuario>
-          
+                  
+    
+    
     
     <usuario>
-                                                                        
+                                                                                        
+        
+        
         
         
         
         
         <nombre>vidal</nombre>
-                                                                        
+                                                                                        
+        
+        
         
         
         <contrasena>32321</contrasena>
-                                                                    
+                                                                                    
+    
+    
     
     
     </usuario>
-                                
+                                        
     
+
+    
+
 </usuarios>
