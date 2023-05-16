@@ -112,28 +112,42 @@ public class MenuPlatillosController implements Initializable {
     private void guardarPlatillosEnJson(List<Platillos> platillos) {
         Gson gson = new Gson();
         String json = gson.toJson(platillos);
+        // Imprimir el JSON en la consola
+        System.out.println("JSON generado:");
+        System.out.println(json);
 
         try {
-            // Crear un objeto Path con la ruta del archivo local
-            Path filePath = Paths.get("./MasterClientApps/src/   Json");
+            // Ruta completa del archivo JSON en el servidor
+            String rutaArchivo = "./MasterClientApps/src/Json/platillos.json";
+            Path filePath = Paths.get(rutaArchivo);
 
-            // Escribir los datos en el archivo local
+            // Verificar si la carpeta 'Json' existe y crearla si no existe
+            Path carpetaJson = filePath.getParent();
+            if (!Files.exists(carpetaJson)) {
+                Files.createDirectories(carpetaJson);
+            }
+
+            // Escribir los datos en el archivo JSON
             Files.writeString(filePath, json);
 
             // Imprimir confirmación
-            System.out.println("Datos guardados en archivo local.");
+            System.out.println("Datos guardados en el archivo JSON en el servidor.");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
     // Método para cargar la lista de platillos desde un archivo JSON local
     private List<Platillos> cargarPlatillosDesdeJson() {
         List<Platillos> platillos = new ArrayList<>();
         // Se lee el archivo JSON local
         try {
-            Path filePath = Paths.get("ruta/del/archivo.json");
+            // Ruta completa del archivo JSON en el servidor
+            String rutaArchivo = "./MasterClientApps/src/Json/platillos.json";
+            Path filePath = Paths.get(rutaArchivo);
+
             if (Files.exists(filePath)) {
-                String json = Files.readString(filePath); 
+                String json = Files.readString(filePath);
                 Gson gson = new Gson();
                 Type type = new TypeToken<List<Platillos>>(){}.getType();
                 platillos = gson.fromJson(json, type);
@@ -144,6 +158,7 @@ public class MenuPlatillosController implements Initializable {
 
         return platillos;
     }
+
 
 
 
@@ -176,9 +191,23 @@ public class MenuPlatillosController implements Initializable {
                 platillo.setPrecio(Integer.parseInt(valores[3]));
                 // Se actualiza la tabla para reflejar los cambios
                 tablaPlatillos.refresh();
+
+                // Actualizar el archivo JSON con los cambios realizados
+                List<Platillos> platillosList = cargarPlatillosDesdeJson();
+                for (Platillos p : platillosList) {
+                    if (p.getId() == platillo.getId()) {
+                        p.setNombrePlatillo(platillo.getNombrePlatillo());
+                        p.setCantCalorias(platillo.getCantCalorias());
+                        p.setTiempoPreparacion(platillo.getTiempoPreparacion());
+                        p.setPrecio(platillo.getPrecio());
+                        break;
+                    }
+                }
+                guardarPlatillosEnJson(platillosList);
             }
         }
     }
+
 
     @FXML
     private void eliminarPlatillo(ActionEvent event) {
