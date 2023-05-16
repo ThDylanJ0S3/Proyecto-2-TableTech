@@ -192,7 +192,7 @@ public class MenuPlatillosController implements Initializable {
             }
         }
     }
-    
+
         @FXML
     private void eliminarPlatillo(ActionEvent event) {
         // Se obtiene el objeto Platillos seleccionado en la tabla
