@@ -7,26 +7,25 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="controller.MenuPedidoController">
-   <children>
-      <Label layoutX="41.0" layoutY="32.0" text="Realiza tu pedido aqui:">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <TableView layoutX="32.0" layoutY="65.0" prefHeight="205.0" prefWidth="533.0">
-        <columns>
-          <TableColumn prefWidth="176.0" text="Platillo" />
-          <TableColumn prefWidth="97.0" text="Calorias" />
-            <TableColumn prefWidth="112.0" text="Tiempo" />
-            <TableColumn prefWidth="147.0" text="Precio" />
-        </columns>
-      </TableView>
-      <Button fx:id="btnRealizarPedido" layoutX="227.0" layoutY="282.0" mnemonicParsing="false" onAction="#realizarPedido" text="Realizar pedido">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Button>
-   </children>
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MenuPedidoController">
+    <children>
+        <Label layoutX="41.0" layoutY="32.0" text="Realiza tu pedido aqui:">
+            <font>
+                <Font size="18.0" />
+            </font>
+        </Label>
+        <TableView fx:id="tablaPlatillos" layoutX="32.0" layoutY="65.0" prefHeight="205.0" prefWidth="533.0">
+            <columns>
+                <TableColumn fx:id="columnaNombre" prefWidth="176.0" text="Platillo" />
+                <TableColumn fx:id="columnaCalorias" prefWidth="97.0" text="Calorias" />
+                <TableColumn fx:id="columnaTiempo" prefWidth="112.0" text="Tiempo" />
+                <TableColumn fx:id="columnaPrecio" prefWidth="147.0" text="Precio" />
+            </columns>
+        </TableView>
+        <Button fx:id="btnRealizarPedido" layoutX="227.0" layoutY="282.0" mnemonicParsing="false" onAction="#realizarPedido" text="Realizar pedido">
+            <font>
+                <Font size="18.0" />
+            </font>
+        </Button>
+    </children>
 </AnchorPane>
