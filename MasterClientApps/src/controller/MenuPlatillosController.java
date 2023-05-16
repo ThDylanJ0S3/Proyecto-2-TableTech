@@ -74,6 +74,12 @@ public class MenuPlatillosController implements Initializable {
 
         // Se asigna la lista observable de platillos a la tabla
         tablaPlatillos.setItems(platos);
+
+        // Cargar los platillos desde el archivo JSON
+        List<Platillos> platillosGuardados = cargarPlatillosDesdeJson("platillos.json");
+        if (!platillosGuardados.isEmpty()) {
+            platos.addAll(platillosGuardados);
+        }
     }
 
     @FXML
@@ -96,29 +102,24 @@ public class MenuPlatillosController implements Initializable {
             AlertW.display("Error", "Es necesario llenar todos los espacios");
             return;
         }
-
+        // Si todos los campos de texto están completos, se crea un nuevo platillo
         Platillos platillo = new Platillos(nombrePlatillo, cantidadCalorias, tiempoPreparacion, precio);
         platos.add(platillo);
 
         // Se llama al método para guardar la lista de platillos en el archivo JSON y almacenarlo en el servidor
-        guardarPlatillosEnJson(platos);
+        guardarPlatillosEnJson(platos, "platillos.json");
     }
 
-    // Ruta del archivo JSON en el servidor
-
-    private static final String PLATILLOS_FILE = "./MasterClientApps/src/ServidorSockets/Servidor.java";
-
-    // Método para guardar la lista de platillos en un archivo JSON local
-    private void guardarPlatillosEnJson(List<Platillos> platillos) {
+       // Método para guardar la lista de platillos en un archivo JSON local
+    private void guardarPlatillosEnJson(List<Platillos> platillos, String nombreArchivo) {
         Gson gson = new Gson();
         String json = gson.toJson(platillos);
         // Imprimir el JSON en la consola
         System.out.println("JSON generado:");
         System.out.println(json);
-
         try {
             // Ruta completa del archivo JSON en el servidor
-            String rutaArchivo = "./MasterClientApps/src/Json/platillos.json";
+            String rutaArchivo = "./MasterClientApps/src/Json/" + nombreArchivo; // Generar ruta completa con el nombre del archivo
             Path filePath = Paths.get(rutaArchivo);
 
             // Verificar si la carpeta 'Json' existe y crearla si no existe
@@ -138,14 +139,13 @@ public class MenuPlatillosController implements Initializable {
     }
 
     // Método para cargar la lista de platillos desde un archivo JSON local
-    private List<Platillos> cargarPlatillosDesdeJson() {
+    private List<Platillos> cargarPlatillosDesdeJson(String nombreArchivo) {
         List<Platillos> platillos = new ArrayList<>();
-        // Se lee el archivo JSON local
+// Se lee el archivo JSON local
         try {
-            // Ruta completa del archivo JSON en el servidor
-            String rutaArchivo = "./MasterClientApps/src/Json/platillos.json";
+// Ruta completa del archivo JSON en el servidor
+            String rutaArchivo = "./MasterClientApps/src/Json/" + nombreArchivo;
             Path filePath = Paths.get(rutaArchivo);
-
             if (Files.exists(filePath)) {
                 String json = Files.readString(filePath);
                 Gson gson = new Gson();
@@ -159,26 +159,21 @@ public class MenuPlatillosController implements Initializable {
         return platillos;
     }
 
-
-
-
     @FXML
     private void modificarPlatillo(ActionEvent event) {
-        // Se obtiene el objeto Platillos seleccionado en la tabla
+// Se obtiene el objeto Platillos seleccionado en la tabla
         Platillos platillo = tablaPlatillos.getSelectionModel().getSelectedItem();
         if (platillo == null) {
-            // Si no se ha seleccionado ningún objeto Platillos, se muestra una alerta de error
+// Si no se ha seleccionado ningún objeto Platillos, se muestra una alerta de error
             AlertW.display("Error", "Por favor seleccione un platillo de la tabla");
         } else {
-            // Si se ha seleccionado un objeto Platillos, se muestra una ventana para modificar los valores de sus propiedades
+// Si se ha seleccionado un objeto Platillos, se muestra una ventana para modificar los valores de sus propiedades
             TextInputDialog dialog = new TextInputDialog();
             dialog.setTitle("Modificar Platillo");
             dialog.setHeaderText("Modificar Platillo");
             dialog.setContentText("Ingrese los nuevos valores para el platillo:");
-
-            // Se establecen los valores actuales del objeto Platillos en los campos de texto de la ventana de diálogo
+            // Se establecen los valores actuales del objeto Platillos en los campos de texto de la
             dialog.getEditor().setText(platillo.getNombrePlatillo() + "," + platillo.getCantCalorias() + "," + platillo.getTiempoPreparacion() + "," + platillo.getPrecio());
-
             // Se muestra la ventana de diálogo y se obtiene la respuesta del usuario
             Optional<String> resultado = dialog.showAndWait();
 
@@ -193,23 +188,12 @@ public class MenuPlatillosController implements Initializable {
                 tablaPlatillos.refresh();
 
                 // Actualizar el archivo JSON con los cambios realizados
-                List<Platillos> platillosList = cargarPlatillosDesdeJson();
-                for (Platillos p : platillosList) {
-                    if (p.getId() == platillo.getId()) {
-                        p.setNombrePlatillo(platillo.getNombrePlatillo());
-                        p.setCantCalorias(platillo.getCantCalorias());
-                        p.setTiempoPreparacion(platillo.getTiempoPreparacion());
-                        p.setPrecio(platillo.getPrecio());
-                        break;
-                    }
-                }
-                guardarPlatillosEnJson(platillosList);
+                guardarPlatillosEnJson(platos, "platillos.json");
             }
         }
     }
-
-
-    @FXML
+    
+        @FXML
     private void eliminarPlatillo(ActionEvent event) {
         // Se obtiene el objeto Platillos seleccionado en la tabla
         Platillos platillo = tablaPlatillos.getSelectionModel().getSelectedItem();
