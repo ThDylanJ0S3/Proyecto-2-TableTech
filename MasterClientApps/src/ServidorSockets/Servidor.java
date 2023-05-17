@@ -232,6 +232,14 @@ public class Servidor implements Runnable{
         return usuarioValido;
     }
 
+    /**
+     * Agrega un usuario administrador al archivo XML.
+     *
+     * @param nombre     el nombre del usuario administrador a agregar.
+     * @param contrasena la contraseña del usuario administrador a agregar.
+     * @param tipo       el tipo de usuario administrador a agregar.
+     * @return true si el usuario administrador se agregó correctamente, false en caso contrario.
+     */
     public boolean agregarUsuario(String nombre, String contrasena, String tipo) {
 
         try {
@@ -305,6 +313,16 @@ public class Servidor implements Runnable{
         }
     }
 
+    /**
+     * Modifica un usuario administrador en el archivo XML.
+     *
+     * @param oldName    el nombre actual del usuario administrador a modificar.
+     * @param oldContra  la contraseña actual del usuario administrador a modificar.
+     * @param newName    el nuevo nombre del usuario administrador.
+     * @param newContra  la nueva contraseña del usuario administrador.
+     * @param newTipo    el nuevo tipo de usuario administrador.
+     * @return true si el usuario administrador se modificó correctamente, false en caso contrario.
+     */
     private boolean modificarAdmin(String oldName,String oldContra,String newName,String newContra){
         try {
             // Crear el objeto DocumentBuilderFactory
@@ -364,6 +382,13 @@ public class Servidor implements Runnable{
     
     }
     
+    /**
+     * Elimina un usuario administrador del archivo XML.
+     *
+     * @param nombre    el nombre del usuario administrador a eliminar.
+     * @param contrasena la contraseña del usuario administrador a eliminar.
+     * @return true si el usuario administrador se eliminó correctamente, false en caso contrario.
+     */
     private boolean eliminarAdmin(String oldName,String oldContrasena,String newName,String newContra){
         try {
         // Crear el objeto DocumentBuilderFactory

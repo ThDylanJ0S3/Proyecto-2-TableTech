@@ -56,6 +56,13 @@ public class MenuPrincipalControllerClient implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         }    
 
+    /**
+     * Método que se ejecuta cuando se hace clic en el botón "Iniciar Sesión".
+     * Verifica las credenciales del usuario y abre la ventana principal de Cliente si son válidas.
+     *
+     * @param event el evento de clic del botón
+     * @throws IOException si ocurre un error al cargar la vista de la ventana
+     */
     @FXML
     private void iniciarSesion(ActionEvent event) throws IOException {
         String usuario= txtUsuario.getText();
@@ -92,6 +99,12 @@ public class MenuPrincipalControllerClient implements Initializable {
         }
     }
 
+    /**
+     * Método que se ejecuta cuando se hace clic en el botón "Cancelar".
+     * Cierra la aplicación.
+     *
+     * @param event el evento de clic del botón
+     */
     @FXML
     private void cerrarApp(ActionEvent event) {
         Button botonPresionado = (Button) event.getSource();
@@ -99,6 +112,12 @@ public class MenuPrincipalControllerClient implements Initializable {
         ventana.close();
     }
 
+    /**
+     * Método que se ejecuta cuando se hace clic en el botón "Conectar al Servidor".
+     * Establece una conexión con el servidor.
+     *
+     * @param event el evento de clic del botón
+     */
     @FXML
     public void conectarServidor(ActionEvent event) {
         Thread t = new Thread(new Runnable() {

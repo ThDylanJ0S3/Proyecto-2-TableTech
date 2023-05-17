@@ -43,6 +43,13 @@ public class PrincipalMasterController implements Initializable {
         // TODO
     }    
 
+    /**
+     * Método que se ejecuta cuando se hace clic en el botón "Lista de Administradores".
+     * Abre la ventana de lista de administradores.
+     *
+     * @param event el evento de clic del botón
+     * @throws IOException si ocurre un error al cargar la vista de la ventana
+     */
     @FXML
     private void mostrarMenuAdmi(ActionEvent event) throws IOException {
 
@@ -60,6 +67,13 @@ public class PrincipalMasterController implements Initializable {
 
     }
 
+    /**
+     * Método que se ejecuta cuando se hace clic en el botón "Menú de Platillos".
+     * Abre la ventana de menú de platillos.
+     *
+     * @param event el evento de clic del botón
+     * @throws IOException si ocurre un error al cargar la vista de la ventana
+     */
     @FXML
     private void mostrarMenuPlatillos(ActionEvent event) throws IOException {
         
