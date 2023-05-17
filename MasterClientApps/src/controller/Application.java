@@ -1,12 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package controller;
 
 /**
  *
- * @author --------------------
+ *@author Jefferson Arias
+ *@author Vidal Flores
+ *@author Dylan Meza
  */
 class Application {
     

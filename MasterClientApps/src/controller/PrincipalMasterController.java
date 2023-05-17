@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package controller;
 
 import java.io.IOException;
@@ -22,7 +18,9 @@ import javafx.stage.Stage;
 /**
  * FXML Controller class
  *
- * @author Personal
+ *@author Jefferson Arias
+ *@author Vidal Flores
+ *@author Dylan Meza
  */
 public class PrincipalMasterController implements Initializable {
 
@@ -77,7 +75,10 @@ public class PrincipalMasterController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-
+    
+    /**
+     * Cierra la ventana actual y abre el menú principal del administrador.
+     */
     void closeWindows() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/menuPrincipalMaster.fxml"));

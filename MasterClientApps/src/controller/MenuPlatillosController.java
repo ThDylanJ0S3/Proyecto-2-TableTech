@@ -23,6 +23,14 @@ import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+/**
+ * FXML Controller class
+ *
+ *@author Jefferson Arias
+ *@author Vidal Flores
+ *@author Dylan Meza
+ */
+
 public class MenuPlatillosController implements Initializable {
 
     // Declaración de objetos y variables de la interfaz gráfica.

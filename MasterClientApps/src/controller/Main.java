@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 package controller;
 
 import java.awt.geom.Rectangle2D;
@@ -18,18 +14,20 @@ import ServidorSockets.Servidor;
 /**
  * Metodo principal que corre el juego
  *
- * @author Vidal Flores Montero 2021579554
+ *@author Jefferson Arias
+ *@author Vidal Flores
+ *@author Dylan Meza
  */
 public class Main extends Application {
 
 
 
-        /**
-         * se declara el contructor del metodo main para poder hacer ejecutable el
-         * proyecto
-         *
-         * @param args se envian los argumentos y comandos de linea
-         */
+    /**
+     * se declara el contructor del metodo main para poder hacer ejecutable el
+     * proyecto
+     *
+     * @param args se envian los argumentos y comandos de linea
+     */
     public static void main(String[] args) {
         launch(args);
     }
