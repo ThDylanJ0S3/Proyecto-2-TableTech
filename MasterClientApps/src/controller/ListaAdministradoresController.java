@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package controller;
 
 import ServidorSockets.ClienteSockets;
@@ -31,7 +27,9 @@ import modelo.Usuario;
 /**
  * FXML Controller class
  *
- * @author Personal
+ *@author Jefferson Arias
+ *@author Vidal Flores
+ *@author Dylan Meza
  */
 public class ListaAdministradoresController implements Initializable {
 
@@ -221,6 +219,11 @@ public class ListaAdministradoresController implements Initializable {
 
     }
 
+    /**
+     * Establece la lista de usuarios en la tabla de administradores.
+     *
+     * @param usuarios la lista de usuarios
+     */
     public void setUsuarios(List<Usuario> usuarios) {
         admis = FXCollections.observableArrayList(usuarios);
         columName.setCellValueFactory(new PropertyValueFactory<>("nombre"));
