@@ -39,18 +39,18 @@ public class HistorialPedidosController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        listaPedidosRealizados = FXCollections.observableArrayList();
+        /*listaPedidosRealizados = FXCollections.observableArrayList();
 
         columnaNombre.setCellValueFactory(new PropertyValueFactory<>("nombrePlatillo"));
         columnaCalorias.setCellValueFactory(new PropertyValueFactory<>("cantCalorias"));
         columnaTiempo.setCellValueFactory(new PropertyValueFactory<>("tiempoPreparacion"));
         columnaPrecio.setCellValueFactory(new PropertyValueFactory<>("precio"));
 
-        tablaPedidos.setItems(listaPedidosRealizados);
+        tablaPedidos.setItems(listaPedidosRealizados);*/
     }
 
     public void setPedidos(ObservableList<Pedido> pedidos) {
-        listaPedidosRealizados.setAll(pedidos);
+        //listaPedidosRealizados.setAll(pedidos);
 
     // Resto del código...
 }
