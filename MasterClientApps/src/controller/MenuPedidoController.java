@@ -1,12 +1,11 @@
 package controller;
+import com.sun.javafx.charts.Legend;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -51,6 +50,8 @@ public class MenuPedidoController implements Initializable {
     private TableColumn<Platillos, Integer> columnaPrecio;
 
     private ObservableList<Platillos> listaPlatillos;
+    private ObservableList<Pedido> listaPedidosRealizados;
+
 
     /**
      * Método llamado al inicializar el controlador.
@@ -60,16 +61,22 @@ public class MenuPedidoController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        listaPedidosRealizados = FXCollections.observableArrayList();
+
         // Configurar las columnas de la tabla para mostrar los atributos de los platillos
         columnaNombre.setCellValueFactory(new PropertyValueFactory<>("nombrePlatillo"));
         columnaCalorias.setCellValueFactory(new PropertyValueFactory<>("cantCalorias"));
         columnaTiempo.setCellValueFactory(new PropertyValueFactory<>("tiempoPreparacion"));
         columnaPrecio.setCellValueFactory(new PropertyValueFactory<>("precio"));
 
+        // Asignar la lista observable de pedidos realizados a la tabla de pedidos
+        ChoiceBox<Pedido> tablaPedidos = new ChoiceBox<>();
+        tablaPedidos.setItems(listaPedidosRealizados);
+
         // Crear una lista observable de platillos vacía
         listaPlatillos = FXCollections.observableArrayList();
 
-        // Asignar la lista observable de platillos a la tabla
+        // Asignar la lista observable de platillos a la tabla de platillos
         tablaPlatillos.setItems(listaPlatillos);
 
         // Cargar los platillos desde el archivo JSON y mostrarlos
@@ -84,8 +91,37 @@ public class MenuPedidoController implements Initializable {
      */
     @FXML
     private void realizarPedido(ActionEvent event) {
-        // TODO: Lógica para realizar el pedido
+        // Obtener el platillo seleccionado
+        Platillos platilloSeleccionado = tablaPlatillos.getSelectionModel().getSelectedItem();
+
+        if (platilloSeleccionado != null) {
+            // Crear un nuevo pedido con los datos del platillo seleccionado
+            Pedido pedido = new Pedido(((Platillos) platilloSeleccionado).getNombrePlatillo(), "Pendiente");
+
+            // Agregar el pedido a la lista de pedidos realizados
+            listaPedidosRealizados.add(pedido);
+
+            // Mostrar un mensaje de confirmación
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Pedido Realizado");
+            alert.setHeaderText(null);
+            alert.setContentText("El pedido ha sido realizado con éxito.");
+            alert.showAndWait();
+        } else {
+            // Mostrar un mensaje de error si no se selecciona ningún platillo
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("Debes seleccionar un platillo.");
+            alert.showAndWait();
+        }
     }
+
+
+
+
+
+
 
     /**
      * Método para cargar la lista de platillos desde un archivo JSON local.
@@ -113,5 +149,8 @@ public class MenuPedidoController implements Initializable {
         }
 
         return platillos;
+    }
+
+    private class Platillo {
     }
 }
