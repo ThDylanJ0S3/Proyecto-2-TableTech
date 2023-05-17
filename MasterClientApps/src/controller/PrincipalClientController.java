@@ -41,6 +41,13 @@ public class PrincipalClientController implements Initializable {
         // TODO
     }    
 
+    /**
+     * Método que se ejecuta cuando se hace clic en el botón "Historial de Pedidos".
+     * Abre la ventana de historial de pedidos.
+     *
+     * @param event el evento de clic del botón
+     * @throws IOException si ocurre un error al cargar la vista de la ventana
+     */
     @FXML
     private void mostrarHistorialPedidos(ActionEvent event) throws IOException {
         
@@ -58,6 +65,13 @@ public class PrincipalClientController implements Initializable {
 
     }
 
+    /**
+     * Método que se ejecuta cuando se hace clic en el botón "Realizar Pedido".
+     * Abre la ventana de menú de pedido.
+     *
+     * @param event el evento de clic del botón
+     * @throws IOException si ocurre un error al cargar la vista de la ventana
+     */
     @FXML
     private void mostrarMenuPlatillos(ActionEvent event) throws IOException {
         

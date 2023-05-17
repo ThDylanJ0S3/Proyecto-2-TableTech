@@ -93,6 +93,13 @@ public class ListaAdministradoresController implements Initializable {
 
     }
 
+    /**
+     * Agrega un administrador al sistema.
+     *
+     * @param event el evento de acción que desencadenó el método.
+     * @throws IOException            si ocurre un error de E/S durante la comunicación con el servidor.
+     * @throws ClassNotFoundException si no se encuentra la clase Usuario durante la deserialización.
+    */
     @FXML
     private void agregarAdmin(ActionEvent event) throws IOException, ClassNotFoundException {
         String nombre = txtUsername.getText();
@@ -134,6 +141,12 @@ public class ListaAdministradoresController implements Initializable {
         }
     }
 
+    /**
+     * Elimina un administrador del sistema.
+     *
+     * @param event el evento de acción que desencadenó el método.
+     * @throws ClassNotFoundException si no se encuentra la clase Usuario durante la deserialización.
+     */
     @FXML
     private void eliminarAdmin(ActionEvent event) throws ClassNotFoundException {
         String oldName=txtUsername.getText();
@@ -176,6 +189,12 @@ public class ListaAdministradoresController implements Initializable {
         }
     }
 
+    /**
+     * Modifica un administrador del sistema.
+     *
+     * @param event el evento de acción que desencadenó el método.
+     * @throws ClassNotFoundException si no se encuentra la clase Usuario durante la deserialización.
+     */
     @FXML
     private void modificarAdmin(ActionEvent event) throws ClassNotFoundException {
         String oldName=txtUsername.getText();

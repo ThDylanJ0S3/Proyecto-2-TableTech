@@ -90,6 +90,9 @@ public class MenuPlatillosController implements Initializable {
         }
     }
 
+    /**
+     * Agrega un nuevo platillo a la lista de platillos y guarda la lista actualizada en un archivo JSON.
+     */
     @FXML
     private void agregarPlatillo() {
         // Se obtienen los valores de los campos de texto correspondientes al nombre del platillo,
@@ -118,7 +121,12 @@ public class MenuPlatillosController implements Initializable {
         guardarPlatillosEnJson(platos, "platillos.json");
     }
 
-       // Método para guardar la lista de platillos en un archivo JSON local
+    /**
+     * Guarda la lista de platillos en un archivo JSON.
+     *
+     * @param platillos      la lista de platillos a guardar.
+     * @param nombreArchivo  el nombre del archivo JSON.
+     */
     private void guardarPlatillosEnJson(List<Platillos> platillos, String nombreArchivo) {
         Gson gson = new Gson();
         String json = gson.toJson(platillos);
@@ -146,12 +154,17 @@ public class MenuPlatillosController implements Initializable {
         }
     }
 
-    // Método para cargar la lista de platillos desde un archivo JSON local
+    /**
+     * Carga la lista de platillos desde un archivo JSON local.
+     *
+     * @param nombreArchivo  el nombre del archivo JSON.
+     * @return la lista de platillos cargada desde el archivo JSON.
+     */
     private List<Platillos> cargarPlatillosDesdeJson(String nombreArchivo) {
         List<Platillos> platillos = new ArrayList<>();
-// Se lee el archivo JSON local
+        // Se lee el archivo JSON local
         try {
-// Ruta completa del archivo JSON en el servidor
+            // Ruta completa del archivo JSON en el servidor
             String rutaArchivo = "./MasterClientApps/src/Json/" + nombreArchivo;
             Path filePath = Paths.get(rutaArchivo);
             if (Files.exists(filePath)) {
@@ -167,15 +180,20 @@ public class MenuPlatillosController implements Initializable {
         return platillos;
     }
 
+    /**
+     * Modifica los valores de un platillo seleccionado en la tabla.
+     *
+     * @param event el evento que desencadena la acción.
+     */
     @FXML
     private void modificarPlatillo(ActionEvent event) {
-// Se obtiene el objeto Platillos seleccionado en la tabla
+        // Se obtiene el objeto Platillos seleccionado en la tabla
         Platillos platillo = tablaPlatillos.getSelectionModel().getSelectedItem();
         if (platillo == null) {
-// Si no se ha seleccionado ningún objeto Platillos, se muestra una alerta de error
+            // Si no se ha seleccionado ningún objeto Platillos, se muestra una alerta de error
             AlertW.display("Error", "Por favor seleccione un platillo de la tabla");
         } else {
-// Si se ha seleccionado un objeto Platillos, se muestra una ventana para modificar los valores de sus propiedades
+            // Si se ha seleccionado un objeto Platillos, se muestra una ventana para modificar los valores de sus propiedades
             TextInputDialog dialog = new TextInputDialog();
             dialog.setTitle("Modificar Platillo");
             dialog.setHeaderText("Modificar Platillo");
@@ -201,7 +219,12 @@ public class MenuPlatillosController implements Initializable {
         }
     }
 
-        @FXML
+    /**
+     * Elimina un platillo seleccionado de la tabla.
+     *
+     * @param event el evento que desencadena la acción.
+     */
+    @FXML
     private void eliminarPlatillo(ActionEvent event) {
         // Se obtiene el objeto Platillos seleccionado en la tabla
         Platillos platillo = tablaPlatillos.getSelectionModel().getSelectedItem();
