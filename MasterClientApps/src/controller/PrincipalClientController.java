@@ -1,19 +1,22 @@
 package controller;
-
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 /**
  * FXML Controller class
@@ -27,19 +30,17 @@ public class PrincipalClientController implements Initializable {
     @FXML
     private Button btnHistorico;
     @FXML
-    private TableColumn<?, ?> columPedidoActivo;
+    private TableColumn<?, ?> columnaPedidoActivo;
     @FXML
     private TableColumn<?, ?> columEstadoPedido;
     @FXML
     private Button btnRealizarPedido;
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+        // Inicializar la tabla y configurar las columnas
+        // Aquí debes vincular las columnas con los datos de tus pedidos, y configurar su contenido
+    }
 
     /**
      * Método que se ejecuta cuando se hace clic en el botón "Historial de Pedidos".
@@ -50,19 +51,24 @@ public class PrincipalClientController implements Initializable {
      */
     @FXML
     private void mostrarHistorialPedidos(ActionEvent event) throws IOException {
-        
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/HistorialPedidos.fxml"));
+        AnchorPane root = loader.load();
+        HistorialPedidosController controlador = loader.getController();
 
-            Parent root = loader.load();
+        // Aquí debes obtener los datos de los pedidos desde alguna fuente, como una base de datos o una lista en memoria
+        List<Pedido> listaPedidos = obtenerPedidos();
 
-            HistorialPedidosController controlador = loader.getController();
+        // Luego, pasas los datos de los pedidos al controlador del historial
+        controlador.setPedidos((ObservableList<Pedido>) listaPedidos);
 
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 
-            stage.setScene(scene);
-            stage.show();
-
+    private List<Pedido> obtenerPedidos() {
+        return null;
     }
 
     /**
@@ -74,19 +80,15 @@ public class PrincipalClientController implements Initializable {
      */
     @FXML
     private void mostrarMenuPlatillos(ActionEvent event) throws IOException {
-        
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/menuPedido.fxml"));
+        AnchorPane root = loader.load();
+        MenuPedidoController controlador = loader.getController();
+        // Aquí debes configurar el controlador del menú de platillos
 
-            Parent root = loader.load();
-
-            MenuPedidoController controlador = loader.getController();
-
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
-
-            stage.setScene(scene);
-            stage.show();
-
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
     
     /**
@@ -95,17 +97,14 @@ public class PrincipalClientController implements Initializable {
     void closeWindows() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/menuPrincipalClient.fxml"));
-
-            Parent root = loader.load();
-
+            AnchorPane root = loader.load();
             MenuPrincipalControllerClient controlador = loader.getController();
+            // Aquí debes configurar el controlador del menú principal
 
-            Scene scene = new Scene(root);
             Stage stage = new Stage();
-
+            Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
-
         } catch (IOException ex) {
             Logger.getLogger(MenuPrincipalControllerMaster.class.getName()).log(Level.SEVERE, null, ex);
         }
