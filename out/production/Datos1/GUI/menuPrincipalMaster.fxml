@@ -53,5 +53,6 @@
             </Button>
          </children>
       </HBox>
+      <Button fx:id="btnServidor" layoutX="512.0" layoutY="361.0" mnemonicParsing="false" onAction="#conectarServidor" text="Conectar" />
    </children>
 </AnchorPane>

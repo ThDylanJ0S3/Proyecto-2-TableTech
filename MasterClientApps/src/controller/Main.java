@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 package controller;
 
 import java.awt.geom.Rectangle2D;
@@ -13,13 +9,18 @@ import javafx.scene.Scene;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import modelo.LectorUsuarios;
+import ServidorSockets.Servidor;
 
 /**
  * Metodo principal que corre el juego
  *
- * @author Vidal Flores Montero 2021579554
+ *@author Jefferson Arias
+ *@author Vidal Flores
+ *@author Dylan Meza
  */
 public class Main extends Application {
+
+
 
     /**
      * se declara el contructor del metodo main para poder hacer ejecutable el
@@ -30,7 +31,6 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-
     @Override
     /**
      * Método principal que genera el hilo necesario para poder ejecutar la GUI
@@ -59,10 +59,20 @@ public class Main extends Application {
         stageClient.setScene(sceneClient);
         stageClient.setX(stageMaster.getX() + 620); // Colocar la ventana a la derecha del maestro con un espacio de 20 píxeles
         stageClient.setY(screenBounds.getMinY() + 100); // Colocar la ventana a la misma altura que el maestro
-
+        
+        
         stageMaster.show();
         stageClient.show();
 
+
+
+        Servidor servidor = new Servidor(8080);
+        Thread hiloServidor = new Thread(servidor);
+        hiloServidor.start();
+        
+        
+
     }
+
 
 }

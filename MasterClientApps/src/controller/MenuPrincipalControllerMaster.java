@@ -1,12 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package controller;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.concurrent.CountDownLatch;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,6 +17,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -24,9 +27,12 @@ import modelo.Usuario;
 /**
  * FXML Controller class
  *
- * @author Personal
+ *@author Jefferson Arias
+ *@author Vidal Flores
+ *@author Dylan Meza
  */
 public class MenuPrincipalControllerMaster implements Initializable {
+    
 
     @FXML
     private TextField txtUsuario;
@@ -37,68 +43,87 @@ public class MenuPrincipalControllerMaster implements Initializable {
     @FXML
     private Button btnCancelar;
 
-    private LectorUsuarios lectorUsuariosUsuarios=new LectorUsuarios();
+    private Socket socket;
+    private ObjectOutputStream out;
+    private ObjectInputStream in;
+
+    @FXML
+    private Button btnServidor;
+
+    /**
+     * Constructor por defecto de la clase MenuPrincipalControllerMaster.
+     */
+    public MenuPrincipalControllerMaster() {
+        }
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-        lectorUsuariosUsuarios.leerUsuarios("C:\\Users\\--------------------\\Desktop\\" +
-                "Proyecto de datos 1\\Datos1\\MasterClientApps\\src" +
-                "\\usuarios\\UsuariosAdmis.xml","usuario");
-        System.out.println(lectorUsuariosUsuarios.getUsuarios());
-}
+
+    }
 
     @FXML
     private void iniciarSesion(ActionEvent event) throws IOException {
-        String usuario= txtUsuario.getText();
-        String contrasena= txtContra.getText();
-        boolean usuarioValido=false;
-        
-        for (Usuario u : lectorUsuariosUsuarios.getUsuarios()) {
-            if (u.getNombre().equals(usuario) && u.getContrasena().equals(contrasena)){
-                usuarioValido=true;
-                break;
-            }
-        }
-        
-        if (usuarioValido){
-          
+        String usuario = txtUsuario.getText();
+        String contrasena = txtContra.getText();
+        String tipo = "usuario";
+        out.writeObject(new String[]{usuario, contrasena,tipo});
+        out.flush();
+
+        // Recibir la respuesta del servidor
+        boolean usuarioValido = in.readBoolean();
+
+        if (usuarioValido) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/PrincipalMaster.fxml"));
-
             Parent root = loader.load();
-
             PrincipalMasterController controlador = loader.getController();
-
             Scene scene = new Scene(root);
             Stage stage = new Stage();
-
             stage.setScene(scene);
             stage.show();
-
             stage.setOnCloseRequest(e -> controlador.closeWindows());
-
             Stage myStage = (Stage) this.btnIniciarSesion.getScene().getWindow();
             myStage.close();
-            
         } else {
             javafx.scene.control.Alert alert = new javafx.scene.control.Alert(Alert.AlertType.ERROR);
             alert.setTitle("Nombre de usuario o contraseña incorrectos");
             alert.setContentText("Nombre de usuario o contraseña incorrectos");
             alert.showAndWait();
+
         }
-
     }
- 
     
-    
-
     @FXML
     private void cerrarApp(ActionEvent event) {
         Button botonPresionado = (Button) event.getSource();
         Stage ventana = (Stage) botonPresionado.getScene().getWindow();
         ventana.close();
+    }
+
+    @FXML
+    public void conectarServidor(ActionEvent event) {
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    socket = new Socket("localhost", 8080);
+                    System.out.println("Conectado al servidor");
+                    System.out.println("antes de in y out");
+                    out = new ObjectOutputStream(socket.getOutputStream());
+                    out.flush();
+                    in = new ObjectInputStream(socket.getInputStream());
+                    System.out.println("despues de in y out");
+                    System.out.println(in+"esto es in");
+                    System.out.println(out+"esto es out");
+
+                } catch (IOException ex) {
+                    System.out.println("Error al conectar al servidor");
+                }
+            }
+        });
+        t.start();
     }
     
 }

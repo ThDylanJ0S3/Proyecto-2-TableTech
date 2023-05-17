@@ -1,10 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package controller;
 
 import java.io.IOException;
+import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -20,11 +17,18 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import modelo.LectorUsuarios;
 import modelo.Usuario;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import javafx.scene.control.Label;
 
 /**
  * FXML Controller class
  *
- * @author Personal
+ *@author Jefferson Arias
+ *@author Vidal Flores
+ *@author Dylan Meza
  */
 public class MenuPrincipalControllerClient implements Initializable {
 
@@ -37,33 +41,30 @@ public class MenuPrincipalControllerClient implements Initializable {
     @FXML
     private Button btnCancelar;
     
-    private LectorUsuarios lectorUsuariosClientes=new LectorUsuarios();
+    
+    private Socket socket;
+    
+    
+    private ObjectOutputStream out;
+    private ObjectInputStream in;
+    @FXML
+    private Button btnServidor;
     /**
      * Initializes the controller class.
      */
-    @Override
+    
     public void initialize(URL url, ResourceBundle rb) {
-        
-        lectorUsuariosClientes.leerUsuarios("C:\\Users\\--------------------\\Desktop\\" +
-                "Proyecto de datos 1\\Datos1" +
-                "\\MasterClientApps\\src\\usuarios" +
-                "\\UsuariosClientes.xml","clientes");
-        System.out.println(lectorUsuariosClientes.getClientes());
-
-    }    
+        }    
 
     @FXML
     private void iniciarSesion(ActionEvent event) throws IOException {
         String usuario= txtUsuario.getText();
         String contrasena= txtContra.getText();
-        boolean usuarioValido=false;
+        String tipo="cliente";
+        out.writeObject(new String[]{usuario, contrasena,tipo});
+        out.flush();
         
-        for (Usuario u : lectorUsuariosClientes.getClientes()) {
-            if (u.getNombre().equals(usuario) && u.getContrasena().equals(contrasena)){
-                usuarioValido=true;
-                break;
-            }
-        }
+        boolean usuarioValido=in.readBoolean();
         
         if (usuarioValido){
             
@@ -98,4 +99,27 @@ public class MenuPrincipalControllerClient implements Initializable {
         ventana.close();
     }
 
+    @FXML
+    public void conectarServidor(ActionEvent event) {
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    socket = new Socket("localhost", 8080);
+                    System.out.println("Conectado al servidor");
+                    System.out.println("antes de in y out");
+                    out = new ObjectOutputStream(socket.getOutputStream());
+                    out.flush();
+                    in = new ObjectInputStream(socket.getInputStream());
+                    System.out.println("despues de in y out");
+                    System.out.println(in + "esto es in");
+                    System.out.println(out + "esto es out");
+
+                } catch (IOException ex) {
+                    System.out.println("Error al conectar al servidor");
+                }
+            }
+        });
+        t.start();
+    }
 }

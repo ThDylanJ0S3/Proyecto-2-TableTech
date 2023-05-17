@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="controller.HistorialPedidosController">
+   <children>
+      <Label layoutX="43.0" layoutY="44.0" text="Historial de pedidos realizados">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TableView layoutX="52.0" layoutY="101.0" prefHeight="198.0" prefWidth="471.0">
+        <columns>
+          <TableColumn fx:id="columPedido" prefWidth="146.0" text="Pedido" />
+          <TableColumn fx:id="columCalorias" minWidth="0.0" prefWidth="97.0" text="Calorias" />
+            <TableColumn fx:id="columTiempo" minWidth="0.0" prefWidth="106.0" text="Tiempo" />
+            <TableColumn fx:id="columPrecio" minWidth="0.0" prefWidth="121.0" text="Precio" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
