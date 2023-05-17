@@ -5,9 +5,12 @@ import javafx.scene.*;
 import javafx.scene.layout.*;
 import javafx.scene.control.*;
 import javafx.geometry.*;
+
 /**
  *
- * @author Dylan Meza
+ *@author Jefferson Arias
+ *@author Vidal Flores
+ *@author Dylan Meza
  */
 
 public class AlertW {

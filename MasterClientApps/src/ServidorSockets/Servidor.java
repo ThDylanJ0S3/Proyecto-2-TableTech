@@ -34,7 +34,14 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 
-
+/**
+ * Clase que representa un servidor que acepta conexiones de clientes y maneja diversas operaciones.
+ *
+ *
+ *@author Jefferson Arias
+ *@author Vidal Flores
+ *@author Dylan Meza
+ */
 public class Servidor implements Runnable{
     
     private ArbolBinarioBusqueda arbolUsuarios;
@@ -47,6 +54,11 @@ public class Servidor implements Runnable{
     
     private List<Usuario> lista;
 
+    /**
+     * Constructor de la clase Servidor que inicializa el objeto Servidor y carga los usuarios desde archivos XML.
+     *
+     * @param puerto el número de puerto en el que se va a ejecutar el servidor.
+     */
     public Servidor(int puerto) {
         try {
             servidorSocket = new ServerSocket(puerto);
@@ -65,6 +77,10 @@ public class Servidor implements Runnable{
         
     }
 
+    /**
+     * Método para iniciar el servidor y aceptar conexiones entrantes.
+     * Se ejecuta en un bucle infinito para mantener el servidor activo.
+     */
     public void iniciarServidor() {
         while (true) {
             try {
@@ -82,6 +98,9 @@ public class Servidor implements Runnable{
         }
     }
 
+    /**
+     * Método para cerrar el servidor y liberar los recursos utilizados.
+     */
     public void cerrarServidor() {
         try {
             if (socket != null) {
@@ -95,11 +114,20 @@ public class Servidor implements Runnable{
         }
     }
 
+    /**
+     * Método run de la interfaz Runnable.
+     * Llama al método iniciarServidor para iniciar el servidor.
+     */
     @Override
     public void run() {
         iniciarServidor();
     }
 
+    /**
+     * Método para recibir el socket y realizar operaciones basadas en los datos enviados por el cliente.
+     *
+     * @param socket el socket de la conexión establecida con el cliente.
+     */
     public void recibirSocket(Socket socket) {
         try {
             ObjectInputStream input = new ObjectInputStream(socket.getInputStream());
@@ -140,6 +168,12 @@ public class Servidor implements Runnable{
         }
     }
     
+    /**
+     * Método para manejar el inicio de sesión de un usuario.
+     * 
+     * @param Datos los datos de inicio de sesión del usuario
+     * @return true si el inicio de sesión es válido, false de lo contrario
+     */
     public boolean manejarLogin(String[] Datos) {
         
             String usuario = Datos[0];
@@ -153,6 +187,12 @@ public class Servidor implements Runnable{
         
     }
    
+    /**
+     * Método para eliminar o modificar los datos de los usuarios.
+     * 
+     * @param Datos los datos de inicio de sesión del usuario
+     * @return false si no se eliminan o modifican datos
+     */
     public boolean manejarArchivosXml(String[] Datos) {
 
         String oldName = Datos[0];
@@ -170,6 +210,13 @@ public class Servidor implements Runnable{
     
     }
 
+    /**
+     * Método para validar un usuario cliente.
+     *
+     * @param usuario    el nombre de usuario
+     * @param contrasena la contraseña
+     * @return true si el usuario cliente es válido, false de lo contrario
+     */
     public boolean validarUsuario(String usuario, String contrasena, String tipo) {
         boolean usuarioValido=false;
         
@@ -238,13 +285,19 @@ public class Servidor implements Runnable{
 
     }
 
-    
+    /**
+     * Método para cargar los usuarios admis en el árbol binario de búsqueda.
+     */
     private void cargarAdmisEnArbol() {
         // Carga los usuarios en el árbol binario de búsqueda
         for (Usuario u : lectorUsuariosUsuarios.getUsuarios()) {
             arbolUsuarios.insertar(u.getNombre(), u.getContrasena());
         }
     }
+    
+    /**
+     * Método para cargar los usuarios clientes en el árbol binario de búsqueda.
+     */
     private void cargarClientesEnArbol() {
         // Carga los usuarios en el árbol binario de búsqueda
         for (Usuario u : lectorUsuariosClientes.getClientes()) {
@@ -369,6 +422,12 @@ public class Servidor implements Runnable{
      
     }
 
+    /**
+     * Método para cargar usuarios desde un archivo XML.
+     *
+     * @param archivoXML la ruta del archivo XML
+     * @return una lista de usuarios
+     */
     public List<Usuario> cargarUsuariosDesdeXML(String archivoXML) {
         List<Usuario> usuarios = new ArrayList<>();
 

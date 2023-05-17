@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package controller;
 import com.sun.javafx.charts.Legend;
 import javafx.collections.FXCollections;
@@ -24,6 +20,15 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+
+/**
+ * FXML Controller class
+ *
+ *@author Jefferson Arias
+ *@author Vidal Flores
+ *@author Dylan Meza
+ */
+
 public class MenuPedidoController implements Initializable {
 
     @FXML

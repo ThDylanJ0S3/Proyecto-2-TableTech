@@ -6,7 +6,9 @@ import javafx.util.Duration;
 
 /**
  *
- * @author Dylan Meza
+ *@author Jefferson Arias
+ *@author Vidal Flores
+ *@author Dylan Meza
  */
 public class Cronometro {
     private int secs = 0; // Segundos transcurridos

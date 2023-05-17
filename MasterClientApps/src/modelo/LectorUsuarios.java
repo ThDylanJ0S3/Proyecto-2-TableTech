@@ -10,7 +10,9 @@ import org.w3c.dom.NodeList;
 
 /**
  *
- * @author Personal
+ *@author Jefferson Arias
+ *@author Vidal Flores
+ *@author Dylan Meza
  */
 public class LectorUsuarios {
 
@@ -18,13 +20,30 @@ public class LectorUsuarios {
     
     private static ArrayList<Usuario> clientes = new ArrayList<Usuario>();
 
+    /**
+     * Obtiene la lista de usuarios.
+     *
+     * @return la lista de usuarios
+     */
     public static ArrayList<Usuario> getUsuarios() {
         return usuarios;
     }
+    
+    /**
+     * Obtiene la lista de clientes.
+     *
+     * @return la lista de clientes
+     */
     public static ArrayList<Usuario> getClientes() {
         return clientes;
     }
 
+    /**
+     * Lee los usuarios desde un archivo XML.
+     *
+     * @param archivo      el nombre del archivo XML
+     * @param tipoArchivo  el tipo de archivo ("usuarios" o "clientes")
+     */
     public static void leerUsuarios(String archivo, String tipoArchivo) {
         try {
             File inputFile = new File(archivo);

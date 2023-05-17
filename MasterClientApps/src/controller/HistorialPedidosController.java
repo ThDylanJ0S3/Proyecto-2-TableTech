@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package controller;
 
 import javafx.collections.FXCollections;
@@ -22,8 +18,12 @@ import java.util.ResourceBundle;
 /**
  * FXML Controller class
  *
- * @author Personal
- */public class HistorialPedidosController implements Initializable {
+ *@author Jefferson Arias
+ *@author Vidal Flores
+ *@author Dylan Meza
+ */
+public class HistorialPedidosController implements Initializable {
+
     @FXML
     private TableView<Pedido> tablaPedidos;
     @FXML

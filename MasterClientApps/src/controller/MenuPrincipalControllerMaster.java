@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package controller;
 
 import java.io.DataInputStream;
@@ -31,7 +27,9 @@ import modelo.Usuario;
 /**
  * FXML Controller class
  *
- * @author Personal
+ *@author Jefferson Arias
+ *@author Vidal Flores
+ *@author Dylan Meza
  */
 public class MenuPrincipalControllerMaster implements Initializable {
     
@@ -52,6 +50,9 @@ public class MenuPrincipalControllerMaster implements Initializable {
     @FXML
     private Button btnServidor;
 
+    /**
+     * Constructor por defecto de la clase MenuPrincipalControllerMaster.
+     */
     public MenuPrincipalControllerMaster() {
         }
 
@@ -93,12 +94,7 @@ public class MenuPrincipalControllerMaster implements Initializable {
 
         }
     }
-
     
- 
-    
-    
-
     @FXML
     private void cerrarApp(ActionEvent event) {
         Button botonPresionado = (Button) event.getSource();

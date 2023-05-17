@@ -8,11 +8,24 @@ import java.net.Socket;
 import java.util.List;
 import modelo.Usuario;
 
+/**
+ * 
+ *Representa un cliente de sockets que se conecta a un servidor para obtener una lista de administradores.
+ *
+ *@author Jefferson Arias
+ *@author Vidal Flores
+ *@author Dylan Meza
+ */
 public class ClienteSockets {
     private Socket socket;
     private ObjectInputStream in;
     private ObjectOutputStream out;
 
+    /**
+     * Obtiene la lista de administradores conectándose al servidor.
+     *
+     * @return La lista de usuarios administradores obtenida del servidor.
+     */
     public List<Usuario> obtenerAdministradores() {
         List<Usuario> usuarios = null;
         try {

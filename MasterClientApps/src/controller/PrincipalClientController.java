@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package controller;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,7 +9,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -22,6 +17,14 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
+/**
+ * FXML Controller class
+ *
+ *@author Jefferson Arias
+ *@author Vidal Flores
+ *@author Dylan Meza
+ */
 public class PrincipalClientController implements Initializable {
 
     @FXML
@@ -74,7 +77,10 @@ public class PrincipalClientController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-
+    
+    /**
+     * Cierra la ventana actual y abre el menú principal del cliente.
+     */
     void closeWindows() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/menuPrincipalClient.fxml"));

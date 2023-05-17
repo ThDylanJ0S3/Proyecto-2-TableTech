@@ -1,28 +1,42 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package EstructurasDatos;
 
 /**
  *
- * @author Personal
+ *@author Jefferson Arias
+ *@author Vidal Flores
+ *@author Dylan Meza
  */
 public class ArbolBinarioBusqueda {
     
     private ArbolBinarioBusqueda arbolUsuarios;
     private ArbolBinarioBusqueda arbolClientes;
-
     private NodoBinarioBusqueda raiz;
 
+    /**
+     * Crea un nuevo árbol binario de búsqueda.
+     */
     public ArbolBinarioBusqueda() {
         raiz = null;
     }
 
+    /**
+     * Inserta un nuevo nodo en el árbol binario de búsqueda.
+     * 
+     * @param nombreUsuario El nombre de usuario del nodo a insertar.
+     * @param contrasena La contraseña asociada al nombre de usuario.
+     */
     public void insertar(String nombreUsuario, String contrasena) {
         raiz = insertarRecursivamente(raiz, nombreUsuario, contrasena);
     }
 
+    /**
+     * Inserta un nuevo nodo en el árbol binario de búsqueda de forma recursiva.
+     *
+     * @param nodo El nodo actual en el proceso de inserción.
+     * @param nombreUsuario El nombre de usuario del nodo a insertar.
+     * @param contrasena La contraseña asociada al nombre de usuario.
+     * @return El nodo actualizado después de la inserción.
+     */
     private NodoBinarioBusqueda insertarRecursivamente(NodoBinarioBusqueda nodo, String nombreUsuario, String contrasena) {
         if (nodo == null) {
             return new NodoBinarioBusqueda(nombreUsuario, contrasena);
@@ -37,10 +51,25 @@ public class ArbolBinarioBusqueda {
         return nodo;
     }
 
+    /**
+     * Busca un nodo con el nombre de usuario y contraseña especificados en el árbol binario de búsqueda.
+     * 
+     * @param nombreUsuario El nombre de usuario a buscar.
+     * @param contrasena La contraseña asociada al nombre de usuario.
+     * @return true si se encuentra el nodo, false en caso contrario.
+     */
     public boolean buscar(String nombreUsuario, String contrasena) {
         return buscarRecursivamente(raiz, nombreUsuario, contrasena);
     }
 
+    /**
+     * Realiza la búsqueda de un nodo con el nombre de usuario y contraseña especificados en el árbol binario de búsqueda de forma recursiva.
+     *
+     * @param nodo El nodo actual en el proceso de búsqueda.
+     * @param nombreUsuario El nombre de usuario a buscar.
+     * @param contrasena La contraseña asociada al nombre de usuario.
+     * @return true si se encuentra el nodo, false en caso contrario.
+     */
     private boolean buscarRecursivamente(NodoBinarioBusqueda nodo, String nombreUsuario, String contrasena) {
         if (nodo == null) {
             return false;
